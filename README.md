@@ -20,11 +20,15 @@ The Eisenhower Matrix Task Manager is a comprehensive task management applicatio
 
 ## 📦 Installation
 To install the application, follow these steps:
+> **Prerequisites:** Node.js v22+ must be installed.
+
 1. Clone the repository using `git clone https://github.com/Devanshukoli/Eisen-hover-matrix.git`
 2. Navigate to the project directory using `cd Eisen-hover-matrix`
-3. Install the dependencies using `npm install` or `yarn install`
-4. Start the development server using `npm run dev` or `yarn dev`
-5. Access the application at `http://localhost:5173`
+3. **Install backend dependencies:** `cd backend && npm install`
+4. **Install frontend dependencies:** `cd frontend && npm install`
+5. Start the backend server using `npm run dev` (runs on `http://localhost:3001`)
+6. Start the frontend server using `npm run dev` (runs on `http://localhost:5173`)
+7. Access the application at `http://localhost:5173`
 
 ## 💻 Usage
 To use the application, follow these steps:
