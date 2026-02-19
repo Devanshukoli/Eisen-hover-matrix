@@ -35,7 +35,7 @@ To use the application, follow these steps:
 5. Archive and retrieve tasks as needed
 
 ## 📂 Project Structure
-```
+```plaintext
 .
 ├── backend
 │   ├── src
@@ -61,7 +61,7 @@ To use the application, follow these steps:
 ```
 
 ## 📸 Screenshots
-![alt text](./Project_Assets/image.png)
+![Eisenhower Matrix Task Manager - main dashboard view](./Project_Assets/image.png)
 
 ## 🤝 Contributing
 To contribute to the project, please follow these steps:
