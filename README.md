@@ -8,7 +8,7 @@ The Eisenhower Matrix Task Manager is a comprehensive task management applicatio
 * Seamless API interactions using Axios
 * Support for creating, updating, and deleting tasks
 * Archiving and retrieving tasks
-* AI-powered suggestions for task prioritization
+* AI-powered suggestions for task prioritization (!upcoming)
 * Customizable theme and layout
 
 ## 🛠️ Tech Stack
@@ -20,10 +20,11 @@ The Eisenhower Matrix Task Manager is a comprehensive task management applicatio
 
 ## 📦 Installation
 To install the application, follow these steps:
-1. Clone the repository using `git clone`
-2. Install the dependencies using `npm install` or `yarn install`
-3. Start the development server using `npm run dev` or `yarn dev`
-4. Access the application at `http://localhost:5173`
+1. Clone the repository using `git clone https://github.com/Devanshukoli/Eisen-hover-matrix.git`
+2. Navigate to the project directory using `cd Eisen-hover-matrix`
+3. Install the dependencies using `npm install` or `yarn install`
+4. Start the development server using `npm run dev` or `yarn dev`
+5. Access the application at `http://localhost:5173`
 
 ## 💻 Usage
 To use the application, follow these steps:
@@ -34,7 +35,7 @@ To use the application, follow these steps:
 5. Archive and retrieve tasks as needed
 
 ## 📂 Project Structure
-```markdown
+```
 .
 ├── backend
 │   ├── src
@@ -60,17 +61,18 @@ To use the application, follow these steps:
 ```
 
 ## 📸 Screenshots
+![alt text](./Project_Assets/image.png)
 
 ## 🤝 Contributing
 To contribute to the project, please follow these steps:
-1. Fork the repository using `git fork`
-2. Create a new branch using `git branch`
-3. Make changes and commit them using `git commit`
-4. Push the changes to the remote repository using `git push`
-5. Create a pull request to merge the changes
+1. Fork the repository via the GitHub UI or `gh repo fork`
+2. Create a new branch using `git checkout -b <branch-name>`
+3. Make changes and commit them using `git commit -m "<commit-message>"`
+4. Push the changes to your fork repository using `git push origin <branch-name>`
+5. Open a pull request against the `main` branch of the original repository
 
 ## 📝 License
-The project is licensed under the MIT License.
+The project is licensed under the [MIT License](./LICENSE).
 
 ## 📬 Contact
-For any questions or concerns, please create issue.
+For any questions or concerns, please [create an issue](https://github.com/Devanshukoli/Eisen-hover-matrix/issues).
