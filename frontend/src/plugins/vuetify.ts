@@ -33,7 +33,7 @@ export default createVuetify({
           primary: '#1A73E8',
           secondary: '#EA4335',
           accent: '#34A853',
-          background: '#F8F9FA',
+          background: '#eeefe9',
           surface: '#FFFFFF',
           'surface-variant': '#F1F3F4',
           'on-surface': '#202124',
