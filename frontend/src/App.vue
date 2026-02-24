@@ -251,22 +251,21 @@ html, body {
 
 .matrix-main {
   position: relative;
-  height: calc(100vh - 64px);
   overflow-y: auto;
-  padding: 0 !important;
 }
 
 /* Axis Labels */
 .axis-labels {
   position: relative;
   pointer-events: none;
+  margin-top: 8px;
 }
 
 .axis-top {
   display: flex;
   justify-content: center;
   gap: 0;
-  padding: 16px 0 4px 48px;
+  padding: 8px 0 4px 48px;
 }
 
 .axis-top .axis-label {
@@ -307,9 +306,9 @@ html, body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 2px;
-  padding: 4px 16px 16px 48px;
-  min-height: calc(100vh - 140px);
+  gap: 16px;
+  padding: 8px 24px 24px 56px;
+  min-height: calc(100vh - 160px);
 }
 
 /* Completed Section */
