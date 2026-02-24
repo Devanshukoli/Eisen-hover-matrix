@@ -3,7 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs';
 import path from 'path';
 
-const DATA_DIR = path.join(__dirname, '..', 'data');
+const IS_VERCEL = !!process.env.VERCEL;
+const DATA_DIR = IS_VERCEL ? '/tmp/data' : path.join(__dirname, '..', 'data');
 const getFilePath = (userId: string) => path.join(DATA_DIR, `${userId}.json`);
 
 /** Simple file-based store keyed by userId */
@@ -19,10 +20,14 @@ export class TaskStore {
   private load(userId: string): Task[] {
     if (this.cache.has(userId)) return this.cache.get(userId)!;
     const fp = getFilePath(userId);
-    if (fs.existsSync(fp)) {
-      const data = JSON.parse(fs.readFileSync(fp, 'utf-8')) as Task[];
-      this.cache.set(userId, data);
-      return data;
+    try {
+      if (fs.existsSync(fp)) {
+        const data = JSON.parse(fs.readFileSync(fp, 'utf-8')) as Task[];
+        this.cache.set(userId, data);
+        return data;
+      }
+    } catch (err) {
+      console.error(`Error loading data for user ${userId}:`, err);
     }
     return [];
   }

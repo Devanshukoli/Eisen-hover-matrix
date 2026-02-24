@@ -18,7 +18,8 @@ router.get('/tasks', (req: Request, res: Response) => {
     const tasks = store.getAll(userId);
     res.json(tasks);
   } catch (err: any) {
-    res.status(400).json({ error: err.message });
+    console.error('Error fetching tasks:', err);
+    res.status(err.message === 'Missing x-user-id header' ? 401 : 400).json({ error: err.message });
   }
 });
 
@@ -29,7 +30,8 @@ router.get('/tasks/archived', (req: Request, res: Response) => {
     const tasks = store.getArchived(userId);
     res.json(tasks);
   } catch (err: any) {
-    res.status(400).json({ error: err.message });
+    console.error('Error fetching archived tasks:', err);
+    res.status(err.message === 'Missing x-user-id header' ? 401 : 400).json({ error: err.message });
   }
 });
 
