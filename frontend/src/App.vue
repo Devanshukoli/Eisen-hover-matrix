@@ -23,7 +23,7 @@
           class="mr-1"
         >
           <v-icon>mdi-archive-outline</v-icon>
-          <v-tooltip activator="parent" location="bottom">Archived Tasks</v-tooltip>
+          <v-tooltip activator="parent" location="bottom" content-class="bg-grey-darken-4 text-white">Archived Tasks</v-tooltip>
         </v-btn>
         <v-btn
           color="primary"

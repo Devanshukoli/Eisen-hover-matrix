@@ -9,7 +9,7 @@
     @click="dialog = true"
   >
     <v-icon>mdi-auto-fix</v-icon>
-    <v-tooltip activator="parent" location="left">AI Suggest</v-tooltip>
+    <v-tooltip activator="parent" location="left" content-class="bg-grey-darken-4 text-white">AI Suggest</v-tooltip>
   </v-btn>
 
   <!-- AI Dialog -->
