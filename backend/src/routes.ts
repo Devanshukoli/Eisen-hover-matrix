@@ -82,7 +82,8 @@ router.patch('/tasks/:id', async (req: Request, res: Response) => {
     const task = await store.update(userId, req.params.id, dto);
     res.json(task);
   } catch (err: any) {
-    res.status(404).json({ error: err.message });
+    const status = err.message === 'Missing x-user-id header' ? 401 : 404;
+    res.status(status).json({ error: err.message });
   }
 });
 
@@ -93,7 +94,8 @@ router.delete('/tasks/:id', async (req: Request, res: Response) => {
     await store.delete(userId, req.params.id);
     res.status(204).send();
   } catch (err: any) {
-    res.status(404).json({ error: err.message });
+    const status = err.message === 'Missing x-user-id header' ? 401 : 404;
+    res.status(status).json({ error: err.message });
   }
 });
 
