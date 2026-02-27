@@ -1,5 +1,6 @@
 import { Task, CreateTaskDTO, UpdateTaskDTO } from './types';
 import { TaskModel, ITask } from './models/Task';
+import { escapeRegex } from './util/escapeRegex';
 
 /** Helper to convert Mongoose doc to Task API response */
 function mapTask(doc: ITask): Task {
@@ -41,7 +42,7 @@ export class TaskStore {
     // Duplicate check (non-deleted tasks in the same quadrant)
     const duplicate = await TaskModel.findOne({
       userId,
-      title: { $regex: new RegExp(`^${dto.title}$`, 'i') },
+      title: { $regex: new RegExp(`^${escapeRegex(dto.title)}$`, 'i') },
       priority: dto.priority,
       importance: dto.importance,
       done: false,
