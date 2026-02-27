@@ -66,6 +66,19 @@ router.patch('/tasks/:id', async (req: Request, res: Response) => {
   try {
     const userId = getUserId(req);
     const dto = req.body as UpdateTaskDTO;
+
+    if (!dto.title || !dto.title.trim()) {
+      res.status(400).json({ error: 'Title is required' });
+      return;
+    }
+    if (!dto.priority || !['urgent', 'not urgent'].includes(dto.priority)) {
+      res.status(400).json({ error: 'Priority must be "urgent" or "not urgent"' });
+      return;
+    }
+    if (!dto.importance || !['important', 'not important'].includes(dto.importance)) {
+      res.status(400).json({ error: 'Importance must be "important" or "not important"' });
+      return;
+    }
     const task = await store.update(userId, req.params.id, dto);
     res.json(task);
   } catch (err: any) {
