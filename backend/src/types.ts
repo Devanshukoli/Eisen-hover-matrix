@@ -12,6 +12,7 @@ export interface Task {
   createdAt: string; // ISO 8601
   deadline?: string; // YYYY-MM-DD
   done: boolean;
+  deletedAt?: string | null;
 }
 
 export interface CreateTaskDTO {
