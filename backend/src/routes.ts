@@ -12,10 +12,10 @@ function getUserId(req: Request): string {
 }
 
 // GET all tasks
-router.get('/tasks', (req: Request, res: Response) => {
+router.get('/tasks', async (req: Request, res: Response) => {
   try {
     const userId = getUserId(req);
-    const tasks = store.getAll(userId);
+    const tasks = await store.getAll(userId);
     res.json(tasks);
   } catch (err: any) {
     console.error('Error fetching tasks:', err);
@@ -24,10 +24,10 @@ router.get('/tasks', (req: Request, res: Response) => {
 });
 
 // GET archived tasks
-router.get('/tasks/archived', (req: Request, res: Response) => {
+router.get('/tasks/archived', async (req: Request, res: Response) => {
   try {
     const userId = getUserId(req);
-    const tasks = store.getArchived(userId);
+    const tasks = await store.getArchived(userId);
     res.json(tasks);
   } catch (err: any) {
     console.error('Error fetching archived tasks:', err);
@@ -36,7 +36,7 @@ router.get('/tasks/archived', (req: Request, res: Response) => {
 });
 
 // POST create task
-router.post('/tasks', (req: Request, res: Response) => {
+router.post('/tasks', async (req: Request, res: Response) => {
   try {
     const userId = getUserId(req);
     const dto = req.body as CreateTaskDTO;
@@ -54,7 +54,7 @@ router.post('/tasks', (req: Request, res: Response) => {
       return;
     }
 
-    const task = store.create(userId, dto);
+    const task = await store.create(userId, dto);
     res.status(201).json(task);
   } catch (err: any) {
     res.status(400).json({ error: err.message });
@@ -62,25 +62,40 @@ router.post('/tasks', (req: Request, res: Response) => {
 });
 
 // PATCH update task
-router.patch('/tasks/:id', (req: Request, res: Response) => {
+router.patch('/tasks/:id', async (req: Request, res: Response) => {
   try {
     const userId = getUserId(req);
     const dto = req.body as UpdateTaskDTO;
-    const task = store.update(userId, req.params.id, dto);
+
+    if (!dto.title || !dto.title.trim()) {
+      res.status(400).json({ error: 'Title is required' });
+      return;
+    }
+    if (!dto.priority || !['urgent', 'not urgent'].includes(dto.priority)) {
+      res.status(400).json({ error: 'Priority must be "urgent" or "not urgent"' });
+      return;
+    }
+    if (!dto.importance || !['important', 'not important'].includes(dto.importance)) {
+      res.status(400).json({ error: 'Importance must be "important" or "not important"' });
+      return;
+    }
+    const task = await store.update(userId, req.params.id, dto);
     res.json(task);
   } catch (err: any) {
-    res.status(404).json({ error: err.message });
+    const status = err.message === 'Missing x-user-id header' ? 401 : 404;
+    res.status(status).json({ error: err.message });
   }
 });
 
 // DELETE task
-router.delete('/tasks/:id', (req: Request, res: Response) => {
+router.delete('/tasks/:id', async (req: Request, res: Response) => {
   try {
     const userId = getUserId(req);
-    store.delete(userId, req.params.id);
+    await store.delete(userId, req.params.id);
     res.status(204).send();
   } catch (err: any) {
-    res.status(404).json({ error: err.message });
+    const status = err.message === 'Missing x-user-id header' ? 401 : 404;
+    res.status(status).json({ error: err.message });
   }
 });
 
